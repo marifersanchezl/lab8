@@ -85,5 +85,26 @@
 <!-- BELOW CODE IS CRITICAL. IT HANDLES HOW FORM DATA IS SENT TO OUR SERVER -->
 <script type="text/javascript">
 
+  $(".submit").on("click", function(event){
+    
+    event.preventDefault();
+
+    var newReservation = {
+      name: $("#reserve-name").val().trim(),
+      phone: $("#reserve-phone").val().trim(),
+      email: $("#reserve-email").val().trim(),
+      uid: $("#reserve-unique-id").val().trim()
+    };
+    
+    $.post("/api/tables", newReservation, function(data){
+    
+      if (data) {
+        alert("Successful reservation. See you soon!");
+      } else {
+        alert("You have been added to our waitlist.");
+      }
+
+    })
+  });
 
 </script>
